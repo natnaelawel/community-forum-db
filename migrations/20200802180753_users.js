@@ -6,11 +6,13 @@ exports.up = function(knex) {
         table.text('email').notNullable();
         table.text('google_id').notNullable();
         table.boolean('banned').notNullable().default(false);
+        table.integer('role_id').unsigned().references('id').inTable('role');
 
-    })
+    });
     
 };
 
+
 exports.down = function(knex) {
-   return knex.schema.dropTable('users'); 
-};
+       return knex.schema.dropTable('users'); 
+    };
